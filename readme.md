@@ -1,3 +1,6 @@
+# 這是fork的
+
+
 # Home Assistant 的 GPT-SoVITS TTS 集成
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
