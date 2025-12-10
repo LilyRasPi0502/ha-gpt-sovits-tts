@@ -118,11 +118,15 @@ class GptSovitsProvider(Provider):
             final_refer_wav_path = refer_wav_path
 
         params = {
-            "refer_wav_path": final_refer_wav_path, # Use the final constructed path
+            "ref_audio_path": final_refer_wav_path, # Use the final constructed path
             "prompt_text": prompt_text,
-            "prompt_language": self._config[CONF_PROMPT_LANGUAGE],
+            "prompt_lang": self._config[CONF_PROMPT_LANGUAGE],
             "text": message,
-            "text_language": language,
+            "text_lang": language,
+            "text_split_method": "cut5",
+            "batch_size": 1,
+            "media_type": "wav",
+            "streaming_mode": "false",
             # ... (rest of the parameters are unchanged)
             "top_k": self._config[CONF_TOP_K],
             "top_p": self._config[CONF_TOP_P],
@@ -132,7 +136,7 @@ class GptSovitsProvider(Provider):
             "if_sr": "false",
         }
         
-        base_url = f"http://{self._config[CONF_HOST]}:{self._config[CONF_PORT]}/"
+        base_url = f"http://{self._config[CONF_HOST]}:{self._config[CONF_PORT]}/tts"
         request_url = base_url + "?" + urlencode(params)
 
         _LOGGER.debug(
